@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
 import ImageGallery from '../ImageGallery/ImageGallery'
 import Loader from '../Loader/Loader'
@@ -9,7 +9,7 @@ import css from './App.module.css'
 
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [images, setImages] = useState([])
 
   return (
     <>
