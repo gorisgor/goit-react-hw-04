@@ -13,7 +13,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
-  const [topic, setTopic] = useState('');
+  const [topic, setTopic] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [showLoadMore, setShowLoadMore] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function App() {
 
   async function handleSearch(query) {
     setImages([]);
-    setPage(1); 
+    setPage(1);
     setTopic(query);
     setShowLoadMore(false);
   }
@@ -41,13 +41,16 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (!topic) return; 
+    if (!topic) return;
 
     async function getImages() {
       try {
         setLoading(true);
         setError(false);
-        const { images: newImages, total_pages } = await fetchImages(topic, page);
+        const { images: newImages, total_pages } = await fetchImages(
+          topic,
+          page
+        );
         setImages((prevImages) => [...prevImages, ...newImages]);
         setTotalPages(total_pages);
         setShowLoadMore(page < total_pages);
@@ -62,13 +65,20 @@ export default function App() {
   }, [page, topic]);
 
   return (
-    <>
+    <div className={css.container}>
       <SearchBar onSearch={handleSearch} />
-      {images.length > 0 && <ImageGallery items={images} openModal={openModal} />}
+      {images.length > 0 && (
+        <ImageGallery items={images} openModal={openModal} />
+      )}
       {loading && <Loader />}
       {error && <ErrorMessage />}
       {showLoadMore && !loading && <LoadMoreBtn onSubmit={handleLoadMore} />}
-      <ImageModal modalIsOpen={modalIsOpen} closeModal={closeModal} src={modalImage.src} alt={modalImage.alt} />
-    </>
+      <ImageModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        src={modalImage.src}
+        alt={modalImage.alt}
+      />
+    </div>
   );
 }

@@ -9,12 +9,12 @@ export const fetchImages = async (query, currentPage) => {
       client_id: API_KEY,
       query: query,
       page: currentPage,
-      per_page: 12,
+      per_page: 9,
     },
   });
 
   return {
     images: response.data.results,
-    total_pages: response.data.total_pages
+    total_pages: response.data.total_pages,
   };
 };

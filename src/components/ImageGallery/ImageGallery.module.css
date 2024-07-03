@@ -1,0 +1,17 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid #808080;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.04);
+}

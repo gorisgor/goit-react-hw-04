@@ -1,4 +1,5 @@
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import css from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
   function handleSubmit(e) {
@@ -7,7 +8,7 @@ export default function SearchBar({ onSearch }) {
     const form = e.target;
     const { query } = form.elements;
     if (!query.value) {
-      toast.error('Please, fulfill query');
+      toast.error("Please, fulfill query");
       return;
     }
     onSearch(query.value);
@@ -15,16 +16,19 @@ export default function SearchBar({ onSearch }) {
   }
 
   return (
-    <header>
-      <form onSubmit={handleSubmit}>
+    <header className={css.header}>
+      <form onSubmit={handleSubmit} className={css.container}>
         <input
+          className={css.input}
           type="text"
           name="query"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
         />
-        <button type="submit">Search</button>
+        <button className={css.btn} type="submit">
+          Search
+        </button>
       </form>
       <Toaster />
     </header>
