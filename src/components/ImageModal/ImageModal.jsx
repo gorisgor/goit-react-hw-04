@@ -14,7 +14,8 @@ const customStyles = {
     maxWidth: "90%",
     maxHeight: "90%",
     padding: "0",
-    overflow: "hidden",
+    // overflow: "auto",
+    objectFit: 'contain',
   },
   overlay: {
     position: "fixed",

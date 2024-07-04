@@ -10,6 +10,8 @@
 .card {
   border: 1px solid #808080;
   transition: transform 0.3s ease;
+  overflow: hidden; 
+
 }
 
 .card:hover {

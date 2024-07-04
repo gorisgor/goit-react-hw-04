@@ -22,7 +22,7 @@ export default function App() {
   async function handleSearch(query) {
     setImages([]);
     setPage(1);
-    setTopic(query);
+    setTopic(prevTopic => prevTopic === query ? query + ' ' : query);
     setShowLoadMore(false);
   }
 
@@ -68,7 +68,7 @@ export default function App() {
     <div className={css.container}>
       <SearchBar onSearch={handleSearch} />
       {images.length > 0 && (
-        <ImageGallery items={images} openModal={openModal} />
+        <ImageGallery  items={images} openModal={openModal} />
       )}
       {loading && <Loader />}
       {error && <ErrorMessage />}

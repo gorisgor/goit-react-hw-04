@@ -6,12 +6,12 @@ export default function SearchBar({ onSearch }) {
     e.preventDefault();
 
     const form = e.target;
-    const { query } = form.elements;
-    if (!query.value) {
+    const query = form.elements.query.value.trim(); 
+    if (!query) {
       toast.error("Please, fulfill query");
       return;
     }
-    onSearch(query.value);
+    onSearch(query); 
     form.reset();
   }
 
