@@ -18,6 +18,7 @@ export default function App() {
   const [showLoadMore, setShowLoadMore] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState({});
+  const [isEmpty, setIsEmpty] = useState(false)
 
   async function handleSearch(query) {
     setImages([]);
@@ -45,12 +46,17 @@ export default function App() {
 
     async function getImages() {
       try {
+        setIsEmpty(false)
         setLoading(true);
         setError(false);
         const { images: newImages, total_pages } = await fetchImages(
           topic,
           page
         );
+        if (total_pages === 0) {
+          setIsEmpty(true);
+          return;
+        }
         setImages((prevImages) => [...prevImages, ...newImages]);
         setTotalPages(total_pages);
         setShowLoadMore(page < total_pages);
@@ -67,6 +73,10 @@ export default function App() {
   return (
     <div className={css.container}>
       <SearchBar onSearch={handleSearch} />
+      {isEmpty && <p style={{
+        fontSize: '26px',
+         color: "orange",
+      }}>Hello, friend! Please, enter a valid query!</p>}
       {images.length > 0 && (
         <ImageGallery  items={images} openModal={openModal} />
       )}

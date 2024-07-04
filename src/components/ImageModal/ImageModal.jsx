@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -9,13 +9,10 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: "-50%",
+    marginRight: "0%",
     transform: "translate(-50%, -50%)",
     maxWidth: "90%",
     maxHeight: "90%",
-    padding: "0",
-    overflow: "auto",
-    objectFit: 'contain',
   },
   overlay: {
     position: "fixed",
@@ -23,7 +20,7 @@ const customStyles = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 1)",
+    backgroundColor: "rgba(0, 0, 0, 1)", 
   },
 };
 
@@ -33,10 +30,10 @@ export default function ImageModal({ modalIsOpen, closeModal, src, alt }) {
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
+      contentLabel="Modal"
     >
       <div className="modal-content">
-        <img src={src} alt={alt} className="modal-image" />
+        <img src={src} alt={alt} style={{ maxWidth: "100%", height: "auto" }} />
       </div>
     </Modal>
   );

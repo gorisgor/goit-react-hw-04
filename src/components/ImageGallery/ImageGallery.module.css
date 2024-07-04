@@ -8,13 +8,11 @@
 }
 
 .card {
-  display: flex;
-  justify-content: center;
-  width: 360px; 
+  width: 360px;
   height: 200px;
   border-radius: 4px;
-  overflow: hidden;
   border: 1px solid #808080;
+  overflow: hidden; 
   transition: transform 0.3s ease;
 }
 
